@@ -1,0 +1,34 @@
+spring:
+  profiles:
+    active: development
+
+---
+spring:
+  config:
+    activate:
+      on-profile: development
+  datasource:
+    url: jdbc:postgresql://localhost:5432/database_for_employees
+    username: employees_user
+    password: alen123
+    testWhileIdle: true
+    time-between-eviction-runs-millis: 3600000
+    validationQuery: SELECT 1
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    open-in-view: true
+    properties:
+        temp:
+          use_jdbc_metadata_defaults: false
+  cache:
+    cache-names: employees_user
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+# Server configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
